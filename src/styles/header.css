@@ -1,0 +1,24 @@
+.nav {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav ul {
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    list-style-type: none;
+    gap: 4em;
+}
+
+.nav li:hover {
+    color: rgba(253, 137, 253, 0.637);
+}
+
+.nav a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.5em;
+}
