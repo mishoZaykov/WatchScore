@@ -1,9 +1,9 @@
-function Header() {
+function Home() {
   return (
     <h1 className="text-3xl font-bold underline ">
-      Hello world!
+      Home Page
     </h1>
   );
 }
 
-export default Header;
+export default Home;
