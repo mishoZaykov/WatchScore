@@ -11,7 +11,6 @@ function Login() {
         <div className="absolute bg-black opacity-60 inset-0 z-0" />
         <div className="w-full px-24 z-10">
           <h1 className="text-5xl font-bold text-left tracking-wide">
-            React Project
           </h1>
         </div>
       </div>
@@ -29,7 +28,7 @@ function Login() {
           <div className="absolute bg-black opacity-60 inset-0 z-0" />
         </div>
         <div className="w-full py-6 z-20 ">
-          <h1 className="my-6 text-5xl">Login Here</h1>
+          <h1 className="my-6 text-5xl">Login Now</h1>
 
           <form action="" className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
             <div className="pb-2 pt-4">
@@ -51,7 +50,7 @@ function Login() {
               />
             </div>
             <div className="text-right text-gray-400 hover:underline hover:text-gray-100">
-              <a href="/register">Already have an account?</a>
+              <a href="/register">Don't have an account?</a>
             </div>
             <div className="px-4 pb-2 pt-4">
               <button className="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none">
