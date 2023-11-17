@@ -1,6 +1,6 @@
 function Create() {
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen bg-black bg-opacity-90 ">
       <form className="w-1/2 dark:bg-gray-800 p-8 rounded-lg">
         <h1 className="text-center text-3xl font-bold text-white pb-8">Add review</h1>
         <div className="mb-6">
