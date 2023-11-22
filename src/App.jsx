@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 
-import Footer from "./Components/Footer";
-import Header from "./Components/Header";
-import Home from "./Components/Home";
-import Login from "./Components/Login";
-import Register from "./Components/Register";
-import Create from "./Components/Create";
-import Posts from "./Components/Posts";
+import Footer from "./Components/Footer/Footer";
+import Header from "./Components/Header/Header";
+import Home from "./Components/Home/Home";
+import Login from "./Components/Login/Login";
+import Register from "./Components/Register/Register";
+import Create from "./Components/CreatePost/Create";
+import Posts from "./Components/Posts/Posts";
 
 import "./index.css";
 
