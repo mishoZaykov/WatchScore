@@ -1,17 +1,30 @@
+import { useNavigate } from "react-router-dom";
 
+import * as movieService from "../../services/movieService";
 
 function Create() {
-  const createPostSubmitHandler = (e) => {
+  const navigate = useNavigate();
+
+  const createMovieSubmitHandler = async (e) => {
     e.preventDefault();
 
-    const postData = Object.fromEntries(new FormData(e.currentTarget))
+    const movieData = Object.fromEntries(new FormData(e.currentTarget));
 
-    console.log(postData);
-  }
+    try {
+      await movieService.create(movieData);
+
+      navigate("/posts");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="flex justify-center items-center h-screen bg-black bg-opacity-90 ">
-      <form className="w-1/2 dark:bg-gray-800 p-8 rounded-lg" onSubmit={createPostSubmitHandler}>
+      <form
+        className="w-1/2 dark:bg-gray-800 p-8 rounded-lg"
+        onSubmit={createMovieSubmitHandler}
+      >
         <h1 className="text-center text-3xl font-bold text-white pb-8">
           Add review
         </h1>

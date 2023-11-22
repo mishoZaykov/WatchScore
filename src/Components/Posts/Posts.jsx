@@ -1,6 +1,18 @@
 import { Link } from "react-router-dom";
 
+import { useEffect, useState } from "react";
+
+import * as movieService from "../../services/movieService";
+
 function Posts() {
+  const [movies, setMovies] = useState([])
+  
+  useEffect(() => {
+    movieService.getAll()
+      .then(result => setMovies(result))
+  }, [])
+
+  console.log(movies);
   return (
     <>
       <Link
