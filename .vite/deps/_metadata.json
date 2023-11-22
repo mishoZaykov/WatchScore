@@ -1,0 +1,23 @@
+{
+  "hash": "0038e71c",
+  "browserHash": "94b62ff6",
+  "optimized": {
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "97d4c6fc",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "a3f7b4e2",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-ULKGYNY5": {
+      "file": "chunk-ULKGYNY5.js"
+    }
+  }
+}

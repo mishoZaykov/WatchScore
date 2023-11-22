@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Home() {
   return (
     <section className="relative bg-[url(https://images.unsplash.com/photo-1505775561242-727b7fba20f0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-center bg-no-repeat">
@@ -17,12 +19,12 @@ function Home() {
           </p>
 
           <div className="mt-8 flex flex-wrap text-center justify-center">
-            <a
-              href="#"
+            <Link
+              to="/catalog"
               className="block w-full rounded bg-indigo-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto"
             >
               Browse
-            </a>
+            </Link>
           </div>
         </div>
       </div>
