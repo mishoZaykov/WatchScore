@@ -6,11 +6,12 @@ import * as movieService from "../../services/movieService";
 import PostItem from "./PostItem/PostItem";
 
 function Posts() {
-  const [movies, setMovies] = useState([]);
+  let [movies, setMovies] = useState([]);
 
   useEffect(() => {
     movieService.getAll().then((result) => setMovies(result));
   }, []);
+
 
   return (
     <section className="flex flex-col justify-center items-center">
@@ -21,7 +22,7 @@ function Posts() {
         ))}
       </div>
 
-      {movies.length === 0 && <h1>No posts yet</h1>}
+      {movies.length === 0 && <h1 className="pt-40 h-screen text-3xl font-extrabold text-gray-900 dark:text-gray-900 md:text-5xl lg:text-6xl"><span className="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-indigo-400">No</span> Posts Yet.</h1>}
     </section>
   );
 }
