@@ -13,7 +13,6 @@ function Posts() {
       .then(result => setMovies(result))
   }, [])
 
-  console.log(movies);
   return (
     <section>
       <h1>All Movie Posts</h1>
