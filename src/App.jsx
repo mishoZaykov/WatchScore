@@ -7,6 +7,7 @@ import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import Create from "./Components/CreatePost/Create";
 import Posts from "./Components/Posts/Posts";
+import Details from "./Components/Details/Details";
 
 import "./index.css";
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/create" element={<Create />} />
         <Route path="/posts" element={<Posts />} />
+        <Route path="/details" element={<Details />} />
       </Routes>
       <Footer />
     </>

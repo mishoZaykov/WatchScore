@@ -33,7 +33,6 @@ function Home() {
         </div>
       </section>
 
-      {/* TODO */}
       <section className="bg-white ">
         <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
           <div className="font-normal text-gray-500 sm:text-lg dark:text-gray-600">
@@ -46,7 +45,6 @@ function Home() {
               film. Let's ride this wave together, embracing every twist, turn,
               and cinematic surprise that comes our way!
             </p>
-
           </div>
           <div className="grid grid-cols-2 gap-4 mt-8">
             <img
