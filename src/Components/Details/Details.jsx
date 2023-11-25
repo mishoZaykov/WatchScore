@@ -1,16 +1,30 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import * as movieService from '../../services/movieService'
+import * as movieService from "../../services/movieService";
+import * as commentService from "../../services/commentService";
 
 function Details() {
-  const [movie, setMovie] = useState({})
-  const {movieId} = useParams();
+  const [movie, setMovie] = useState({});
+  const { movieId } = useParams();
 
   useEffect(() => {
-    movieService.getOne(movieId)
-      .then(setMovie);
-  }, [movieId])
+    movieService.getOne(movieId).then(setMovie);
+  }, [movieId]);
+
+  const addCommentHandler = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const newComment = await commentService.create(
+      movieId,
+      formData.get("username"),
+      formData.get("comment")
+    );
+
+    console.log(newComment);
+  };
 
   return (
     <>
@@ -30,16 +44,16 @@ function Details() {
                 {movie.title}
               </h1>
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
-              CAME OUT IN:
+                CAME OUT IN:
               </h2>
               <p className="text-gray-400 text-xl title-font font-medium mb-5">
                 {movie.year}
               </p>
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
-              GENRE: 
+                GENRE:
               </h2>
               <h3 className="text-gray-900 text-3xl title-font font-medium mb-5">
-               {movie.genre}
+                {movie.genre}
               </h3>
               {/* <div className="flex mb-4">
                 <span className="flex items-center">
@@ -102,29 +116,78 @@ function Details() {
                 </span>
               </div> */}
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
-              REVIEW: 
+                REVIEW:
               </h2>
-              <p className="leading-relaxed">
-                {movie.review}
-              </p>
-
+              <p className="leading-relaxed">{movie.review}</p>
               <div className="flex">
-
                 <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
                   Button
                 </button>
-                <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-                  <svg
-                    fill="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    className="w-5 h-5"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-                  </svg>
-                </button>
+              </div>
+
+              <div className="antialiased mx-auto max-w-screen-sm">
+                <h3 className="mb-4 text-lg font-semibold text-gray-900">
+                  Comments:
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex">
+                    <div className="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
+                      <strong>Sarah</strong>{" "}
+                      <p className="text-sm">
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et
+                        dolore magna aliquyam erat, sed diam voluptua.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex">
+                    <div className="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
+                      <strong>Sarah</strong>{" "}
+                      <p className="text-sm">
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et
+                        dolore magna aliquyam erat, sed diam voluptua.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex  items-center justify-center shadow-lg mt-10 mx-8 mb-4 max-w-lg">
+                <form
+                  className="w-full max-w-xl bg-white rounded-lg px-4 pt-2"
+                  onSubmit={addCommentHandler}
+                >
+                  <div className="flex flex-wrap -mx-3 mb-6">
+                    <h2 className="px-4 pt-3 pb-2 text-gray-800 text-lg">
+                      Add a new comment
+                    </h2>
+                    <div className="w-full md:w-full px-3 mb-2 mt-2">
+                      <input
+                        className="bg-gray-100 rounded border border-gray-400  py-2 px-3 mb-4 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                      />
+                      <textarea
+                        className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                        name="comment"
+                        placeholder="Type Your Comment"
+                        required=""
+                        defaultValue={""}
+                      />
+                    </div>
+                    <div className="w-full md:w-full flex items-start md:w-full px-3">
+                      <div className="-mr-1">
+                        <input
+                          type="submit"
+                          className="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100"
+                          defaultValue="Post Comment"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
