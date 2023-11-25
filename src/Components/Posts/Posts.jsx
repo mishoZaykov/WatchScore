@@ -14,7 +14,7 @@ function Posts() {
 
 
   return (
-    <section className="flex flex-col justify-center items-center">
+    <section className="  flex flex-col justify-center items-center">
       <h1 className="text-center text-4xl m-5 font-bold">All Movie Posts</h1>
       <div >
         {movies.map((movie) => (

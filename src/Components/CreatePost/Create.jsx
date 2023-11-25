@@ -20,7 +20,7 @@ function Create() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-black bg-opacity-90 ">
+    <div className="flex justify-center items-center h-screen bg-white bg-opacity-90 ">
       <form
         className="w-1/2 dark:bg-gray-800 p-8 rounded-lg"
         onSubmit={createMovieSubmitHandler}

@@ -8,6 +8,11 @@ export const getAll = async () => {
   return Object.values(result);
 };
 
+export const getOne = async (movieId) => {
+  const result = await request.get(`${baseUrl}/${movieId}`);
+  return result;
+}
+
 export const create = async (movieData) => {
   const result = await request.post(baseUrl, movieData);
 

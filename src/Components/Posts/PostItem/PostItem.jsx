@@ -1,13 +1,9 @@
 import { Link } from "react-router-dom";
 
-function PostItem({
-    title,
-    year,
-    imageUrl,
-}) {
+function PostItem({ _id, title, year, imageUrl }) {
   return (
     <Link
-      to="/details"
+      to={`/details/${_id}`}
       className="flex mb-10 flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
     >
       <img
