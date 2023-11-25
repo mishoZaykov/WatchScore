@@ -6,10 +6,13 @@ import * as commentService from "../../services/commentService";
 
 function Details() {
   const [movie, setMovie] = useState({});
+  const [comments, setComments] = useState([]);
   const { movieId } = useParams();
 
   useEffect(() => {
     movieService.getOne(movieId).then(setMovie);
+
+    commentService.getAll().then(setComments);
   }, [movieId]);
 
   const addCommentHandler = async (e) => {
@@ -130,26 +133,14 @@ function Details() {
                   Comments:
                 </h3>
                 <div className="space-y-4">
-                  <div className="flex">
-                    <div className="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
-                      <strong>Sarah</strong>{" "}
-                      <p className="text-sm">
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et
-                        dolore magna aliquyam erat, sed diam voluptua.
-                      </p>
+                  {comments.map(({ username, text, _id }) => (
+                    <div key={_id} className="flex">
+                      <div className="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
+                        <strong>{username}</strong>{" "}
+                        <p className="text-sm">{text}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex">
-                    <div className="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
-                      <strong>Sarah</strong>{" "}
-                      <p className="text-sm">
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et
-                        dolore magna aliquyam erat, sed diam voluptua.
-                      </p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
 
