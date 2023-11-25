@@ -16,7 +16,7 @@ function Details() {
     <>
       <section className="text-gray-700 body-font overflow-hidden bg-white">
         <div className="container px-5 py-24 mx-auto">
-          <div className="lg:w-4/5 mx-auto flex flex-wrap">
+          <div className="lg:w-4/5 mx-auto flex flex-wrap ">
             <img
               alt={movie.title}
               className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
@@ -26,14 +26,20 @@ function Details() {
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
                 POST DETAILS
               </h2>
-              <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
+              <h1 className="text-gray-900 text-3xl title-font font-medium mb-5">
                 {movie.title}
               </h1>
-              <h3 className="text-gray-900 text-3xl title-font font-medium mb-1">
+              <h2 className="text-sm title-font text-gray-500 tracking-widest">
+              CAME OUT IN:
+              </h2>
+              <p className="text-gray-400 text-xl title-font font-medium mb-5">
                 {movie.year}
-              </h3>
-              <h3 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                {movie.genre}
+              </p>
+              <h2 className="text-sm title-font text-gray-500 tracking-widest">
+              GENRE: 
+              </h2>
+              <h3 className="text-gray-900 text-3xl title-font font-medium mb-5">
+               {movie.genre}
               </h3>
               {/* <div className="flex mb-4">
                 <span className="flex items-center">
@@ -95,6 +101,9 @@ function Details() {
                   <span className="text-gray-600 ml-3">4 Reviews</span>
                 </span>
               </div> */}
+              <h2 className="text-sm title-font text-gray-500 tracking-widest">
+              REVIEW: 
+              </h2>
               <p className="leading-relaxed">
                 {movie.review}
               </p>
