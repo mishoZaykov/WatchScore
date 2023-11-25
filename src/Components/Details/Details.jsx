@@ -26,7 +26,7 @@ function Details() {
       formData.get("comment")
     );
 
-    console.log(newComment);
+    setComments(state => [...state, newComment]);
   };
 
   return (
