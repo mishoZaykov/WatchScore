@@ -11,29 +11,33 @@ import Details from "./Components/Details/Details";
 
 import "./index.css";
 import { useState } from "react";
+import AuthContext from "./context/authContext";
 
 function App() {
   const [auth, setAuth] = useState({});
 
   const loginSubmitHandler = (values) => {
-    
-
     console.log(values);
-  }
+  };
 
   return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login loginSubmitHandler={loginSubmitHandler}/>} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/create" element={<Create />} />
-        <Route path="/posts" element={<Posts />} />
-        <Route path="/details/:movieId" element={<Details />} />
-      </Routes>
-      <Footer />
-    </>
+    <AuthContext.Provider value={{ loginSubmitHandler }}>
+      <>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+          <Route path="/register" element={<Register />} />
+          <Route path="/create" element={<Create />} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/details/:movieId" element={<Details />} />
+        </Routes>
+        <Footer />
+      </>
+    </AuthContext.Provider>
   );
 }
 

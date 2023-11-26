@@ -7,13 +7,13 @@ export default function useForm(submitHandler, initialValues) {
         setValues(state => ({
             ...state,
             [e.target.name]: e.target.value
-        }))
+        }));
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        submitHandler(values)
+        submitHandler(values);
     }
 
     return{
