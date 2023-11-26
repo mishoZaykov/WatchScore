@@ -10,14 +10,23 @@ import Posts from "./Components/Posts/Posts";
 import Details from "./Components/Details/Details";
 
 import "./index.css";
+import { useState } from "react";
 
 function App() {
+  const [auth, setAuth] = useState({});
+
+  const loginSubmitHandler = (values) => {
+    
+
+    console.log(values);
+  }
+
   return (
     <>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login loginSubmitHandler={loginSubmitHandler}/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/create" element={<Create />} />
         <Route path="/posts" element={<Posts />} />
