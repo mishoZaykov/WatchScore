@@ -10,9 +10,11 @@ function Details() {
   const { movieId } = useParams();
 
   useEffect(() => {
-    movieService.getOne(movieId).then(setMovie);
+    movieService.getOne(movieId)
+      .then(setMovie);
 
-    commentService.getAll().then(setComments);
+    commentService.getAll(movieId)
+      .then(setComments);
   }, [movieId]);
 
   const addCommentHandler = async (e) => {

@@ -1,4 +1,11 @@
+import useForm from "../../hooks/useForm";
+
 function Login() {
+  const {values, onChange, onSubmit} = useForm({
+    email: '',
+    password: '',
+  });
+
   return (
     <section className="min-h-screen flex items-stretch text-white ">
       <div
@@ -30,7 +37,7 @@ function Login() {
         <div className="w-full py-6 z-20 ">
           <h1 className="my-6 text-5xl">Login Now</h1>
 
-          <form action="" className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+          <form className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto" onSubmit={onSubmit}>
             <div className="pb-2 pt-4">
               <input
                 type="email"
@@ -38,6 +45,8 @@ function Login() {
                 id="email"
                 placeholder="Email"
                 className="block w-full p-4 text-lg rounded-sm bg-black"
+                onChange={onChange}
+                value={values.email}
               />
             </div>
             <div className="pb-2 pt-4">
@@ -47,6 +56,8 @@ function Login() {
                 name="password"
                 id="password"
                 placeholder="Password"
+                onChange={onChange}
+                value={values.password}
               />
             </div>
             <div className="text-right text-gray-400 hover:underline hover:text-gray-100">
