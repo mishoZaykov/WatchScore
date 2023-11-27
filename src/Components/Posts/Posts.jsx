@@ -9,7 +9,11 @@ function Posts() {
   let [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    movieService.getAll().then((result) => setMovies(result));
+    movieService.getAll()
+    .then((result) => setMovies(result))
+    .catch(err => {
+      console.log(err);
+    })
   }, []);
 
 
