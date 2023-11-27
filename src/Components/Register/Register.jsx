@@ -1,11 +1,29 @@
+import { useContext } from "react";
+import AuthContext from "../../context/authContext";
+import useForm from "../../hooks/useForm";
+
+const RegisterFormKeys = {
+  Username: "username",
+  Email: "email",
+  Password: "password",
+  ConfirmPassword: "confirmPassword",
+};
+
 function Register() {
+  const { registerSubmitHandler } = useContext(AuthContext);
+  const { values, onChange, onSubmit } = useForm(registerSubmitHandler, {
+    [RegisterFormKeys.Username]: "",
+    [RegisterFormKeys.Email]: "",
+    [RegisterFormKeys.Password]: "",
+    [RegisterFormKeys.ConfirmPassword]: "",
+  });
+
   return (
     <section className="min-h-screen flex items-stretch text-white ">
       <div
         className="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
         style={{
-          backgroundImage:
-          "url(../../public/moviePoster2.jpg)",
+          backgroundImage: "url(../../public/moviePoster2.jpg)",
         }}
       >
         <div className="absolute bg-black opacity-60 inset-0 z-0" />
@@ -20,8 +38,7 @@ function Register() {
         <div
           className="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-center"
           style={{
-            backgroundImage:
-            "url(../../public/moviePoster2.jpg)",
+            backgroundImage: "url(../../public/moviePoster2.jpg)",
           }}
         >
           <div className="absolute bg-black opacity-60 inset-0 z-0" />
@@ -29,13 +46,18 @@ function Register() {
         <div className="w-full py-6 z-20 ">
           <h1 className="my-6 text-5xl">Register Now</h1>
 
-          <form action="" className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+          <form
+            className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto"
+            onSubmit={onSubmit}
+          >
             <div className="pb-2 pt-4">
               <input
                 type="text"
                 name="username"
                 id="username"
                 placeholder="Username"
+                onChange={onChange}
+                values={values[RegisterFormKeys.Username]}
                 className="block w-full p-4 text-lg rounded-sm bg-black"
               />
             </div>
@@ -45,6 +67,8 @@ function Register() {
                 name="email"
                 id="email"
                 placeholder="Email"
+                onChange={onChange}
+                values={values[RegisterFormKeys.Email]}
                 className="block w-full p-4 text-lg rounded-sm bg-black"
               />
             </div>
@@ -54,15 +78,19 @@ function Register() {
                 type="password"
                 name="password"
                 id="password"
+                onChange={onChange}
+                values={values[RegisterFormKeys.Password]}
                 placeholder="Password"
               />
             </div>
             <div className="pb-2 pt-4">
               <input
                 type="password"
-                name="repeatPassword"
-                id="repeatPassword"
+                name="confirmPassword"
+                id="confirmPassword"
                 placeholder="Confirm Password"
+                onChange={onChange}
+                values={values[RegisterFormKeys.ConfirmPassword]}
                 className="block w-full p-4 text-lg rounded-sm bg-black"
               />
             </div>
