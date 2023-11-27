@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import * as movieService from "../../services/movieService";
 import * as commentService from "../../services/commentService";
+import AuthContext from "../../context/authContext";
 
 function Details() {
+  const { username } = useContext(AuthContext);
   const [movie, setMovie] = useState({});
   const [comments, setComments] = useState([]);
   const { movieId } = useParams();
 
   useEffect(() => {
-    movieService.getOne(movieId)
-      .then(setMovie);
+    movieService.getOne(movieId).then(setMovie);
 
-    commentService.getAll(movieId)
-      .then(setComments);
+    commentService.getAll(movieId).then(setComments);
   }, [movieId]);
 
   const addCommentHandler = async (e) => {
@@ -24,11 +24,10 @@ function Details() {
 
     const newComment = await commentService.create(
       movieId,
-      formData.get("username"),
       formData.get("comment")
     );
 
-    setComments(state => [...state, newComment]);
+    setComments((state) => [...state, { ...newComment, author: { username } }]);
   };
 
   return (
@@ -135,9 +134,9 @@ function Details() {
                   Comments:
                 </h3>
                 <div className="space-y-4">
-                  {comments.map(({ username, text, _id }) => (
+                  {comments.map(({ _id, text, owner: { username } }) => (
                     <div key={_id} className="flex">
-                      <div className="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
+                      <div className="flex-1 border bg-gray-100 rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
                         <strong>{username}</strong>{" "}
                         <p className="text-sm">{text}</p>
                       </div>
@@ -156,12 +155,6 @@ function Details() {
                       Add a new comment
                     </h2>
                     <div className="w-full md:w-full px-3 mb-2 mt-2">
-                      <input
-                        className="bg-gray-100 rounded border border-gray-400  py-2 px-3 mb-4 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-                        type="text"
-                        name="username"
-                        placeholder="Username"
-                      />
                       <textarea
                         className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
                         name="comment"

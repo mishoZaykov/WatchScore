@@ -4,7 +4,8 @@ const baseUrl = 'http://localhost:3030/data/comments';
 
 export const getAll = async (movieId) => {
     const query = new URLSearchParams({
-        where: `movieId="${movieId}"`
+        where: `movieId="${movieId}"`,
+        load: `owner=_ownerId:users`,
     })
 
     const result = await request.get(`${baseUrl}?${query}`);
@@ -12,10 +13,9 @@ export const getAll = async (movieId) => {
     return result;
 }
 
-export const create = async (movieId, username, text) => {
+export const create = async (movieId, text) => {
     const newComment = await request.post(baseUrl, {
         movieId,
-        username,
         text,
     });
 
