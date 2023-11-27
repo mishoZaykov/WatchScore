@@ -13,17 +13,24 @@ import Register from "./Components/Register/Register";
 import Create from "./Components/CreatePost/Create";
 import Posts from "./Components/Posts/Posts";
 import Details from "./Components/Details/Details";
+import Logout from "./Components/Logout/Logout";
 
 import "./index.css";
 
 function App() {
   const navigate = useNavigate();
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState(() => {
+    localStorage.removeItem("accessToken");
+
+    return {};
+  });
 
   const loginSubmitHandler = async (values) => {
     const result = await authService.login(values.email, values.password);
 
     setAuth(result);
+
+    localStorage.setItem("accessToken", result.accessToken);
 
     navigate(Path.Home);
   };
@@ -37,15 +44,24 @@ function App() {
 
     setAuth(result);
 
+    localStorage.setItem("accessToken", result.accessToken);
+
     navigate(Path.Home);
+  };
+
+  const logoutHandler = () => {
+    setAuth({});
+
+    localStorage.removeItem("accessToken");
   };
 
   const values = {
     loginSubmitHandler,
     registerSubmitHandler,
+    logoutHandler,
     username: auth.username,
     email: auth.email,
-    isAuthenticated: !!auth.email,
+    isAuthenticated: !!auth.accessToken,
   };
 
   return (
@@ -59,6 +75,7 @@ function App() {
           <Route path="/create" element={<Create />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/details/:movieId" element={<Details />} />
+          <Route path={Path.Logout} element={<Logout />} />
         </Routes>
         <Footer />
       </>
