@@ -1,5 +1,5 @@
 import { useContext, useEffect, useReducer, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import * as movieService from "../../services/movieService";
 import * as commentService from "../../services/commentService";
@@ -78,12 +78,12 @@ function Details() {
 
               {userId === movie._ownerId && (
                 <div className="flex justify-end gap-3">
-                  <button className="flex  text-white bg-indigo-700 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-700 rounded">
+                  <Link to={`/details/${movieId}/edit`} className="flex  text-white bg-indigo-700 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-700 rounded">
                     Edit
-                  </button>
-                  <button className="flex  text-white bg-indigo-700 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-700 rounded">
+                  </Link>
+                  <Link to='/details/:movieId/delete' className="flex  text-white bg-indigo-700 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-700 rounded">
                     Delete
-                  </button>
+                  </Link>
                 </div>
               )}
 
