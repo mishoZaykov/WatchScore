@@ -20,4 +20,10 @@ export const create = async (movieData) => {
   return result;
 };
 
+export const edit = async (movieId, movieData) => {
+  const result = await request.put(`${baseUrl}/${movieId}`, movieData);
+
+  return result
+}
+
 export const remove = async (movieId) => request.remove(`${baseUrl}/${movieId}`);

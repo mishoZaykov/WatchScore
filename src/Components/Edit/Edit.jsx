@@ -1,13 +1,18 @@
 import { useNavigate, useParams } from "react-router-dom";
 
 import * as movieService from "../../services/movieService";
-import useForm from "../../hooks/useForm";
 import { useEffect, useState } from "react";
 
 function Edit() {
   const navigate = useNavigate();
   const {movieId} = useParams();
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState({
+    title: '',
+    year: '',
+    genre: '',
+    imageUrl: '',
+    review: '',
+  });
 
   useEffect(() => {
     movieService.getOne(movieId)
@@ -16,9 +21,13 @@ function Edit() {
         })
   }, [movieId])
 
-  const editMovieSubmitHandler = async (values) => {
+  const editMovieSubmitHandler = async (e) => {
+    e.preventDefault();
+
+    const values = Object.fromEntries(new FormData(e.currentTarget));
+
     try {
-      await movieService.create(values);
+      await movieService.edit(movieId, values);
 
       navigate("/posts");
     } catch (err) {
@@ -26,19 +35,18 @@ function Edit() {
     }
   };
 
-  const { values, onChange, onSubmit } = useForm(editMovieSubmitHandler, {
-    title: '',
-    year: '',
-    genre: '',
-    imageUrl: '',
-    review: ''
-  })
+  const onChange = (e) => {
+    setMovie(state => ({
+      ...state,
+      [e.target.name]: e.target.value
+    }));
+  }
 
   return (
     <div className="flex justify-center items-center h-screen bg-white bg-opacity-90 ">
       <form
         className="w-1/2 dark:bg-gray-800 p-8 rounded-lg"
-        onSubmit={onSubmit}
+        onSubmit={editMovieSubmitHandler}
       >
         <h1 className="text-center text-3xl font-bold text-white pb-8">
           Edit review
@@ -54,8 +62,8 @@ function Edit() {
             type="text"
             id="title"
             name="title"
+            value={movie.title}
             onChange={onChange}
-            value={values.title}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
             required=""
           />
@@ -71,8 +79,8 @@ function Edit() {
             type="text"
             id="year"
             name="year"
+            value={movie.year}
             onChange={onChange}
-            value={values.year}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
             required=""
           />
@@ -88,8 +96,8 @@ function Edit() {
             type="text"
             id="genre"
             name="genre"
+            value={movie.genre}
             onChange={onChange}
-            value={values.genre}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
             required=""
           />
@@ -105,8 +113,8 @@ function Edit() {
             type="text"
             id="imageUrl"
             name="imageUrl"
+            value={movie.imageUrl}
             onChange={onChange}
-            value={values.imageUrl}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
             required=""
           />
@@ -122,8 +130,8 @@ function Edit() {
             type="text"
             id="review"
             name="review"
+            value={movie.review}
             onChange={onChange}
-            value={values.review}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
             required=""
           />
