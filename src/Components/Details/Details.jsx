@@ -1,5 +1,5 @@
 import { useContext, useEffect, useReducer, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import * as movieService from "../../services/movieService";
 import * as commentService from "../../services/commentService";
@@ -11,6 +11,8 @@ function Details() {
   const [movie, setMovie] = useState({});
   const [comments, dispatchComment] = useReducer(reducer, []);
   const { movieId } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     movieService.getOne(movieId).then(setMovie);
@@ -40,6 +42,16 @@ function Details() {
       payload: newComment,
     });
   };
+
+  const deleteButtonClickHandler = async () => {
+    const hasConfirmed = confirm('Do you really want to delete your post?');
+
+    if(hasConfirmed){
+      await movieService.remove(movieId)
+
+      navigate('/posts')
+    }
+  }
 
   return (
     <>
@@ -81,9 +93,7 @@ function Details() {
                   <Link to={`/details/${movieId}/edit`} className="flex  text-white bg-indigo-700 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-700 rounded">
                     Edit
                   </Link>
-                  <Link to='/details/:movieId/delete' className="flex  text-white bg-indigo-700 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-700 rounded">
-                    Delete
-                  </Link>
+                  <button onClick={deleteButtonClickHandler} className="flex  text-white bg-indigo-700 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-700 rounded">Delete</button>
                 </div>
               )}
 

@@ -19,3 +19,5 @@ export const create = async (movieData) => {
 
   return result;
 };
+
+export const remove = async (movieId) => request.remove(`${baseUrl}/${movieId}`);
