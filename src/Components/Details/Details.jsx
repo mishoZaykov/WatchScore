@@ -9,6 +9,7 @@ import reducer from "./commentReducer";
 function Details() {
   const { username, userId } = useContext(AuthContext);
   const [movie, setMovie] = useState({});
+  const [commentText, setCommentText] = useState("");
   const [comments, dispatchComment] = useReducer(reducer, []);
   const { movieId } = useParams();
 
@@ -41,17 +42,21 @@ function Details() {
       type: "ADD_COMMENT",
       payload: newComment,
     });
+
+    setCommentText("");
   };
 
+  const isCommentEmpty = commentText.trim() === "";
+
   const deleteButtonClickHandler = async () => {
-    const hasConfirmed = confirm('Do you really want to delete your post?');
+    const hasConfirmed = confirm("Do you really want to delete your post?");
 
-    if(hasConfirmed){
-      await movieService.remove(movieId)
+    if (hasConfirmed) {
+      await movieService.remove(movieId);
 
-      navigate('/posts')
+      navigate("/posts");
     }
-  }
+  };
 
   return (
     <>
@@ -90,10 +95,18 @@ function Details() {
 
               {userId === movie._ownerId && (
                 <div className="flex justify-end gap-3">
-                  <Link to={`/details/${movieId}/edit`} className="flex  text-white bg-indigo-700 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-700 rounded">
+                  <Link
+                    to={`/details/${movieId}/edit`}
+                    className="flex  text-white bg-indigo-700 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-700 rounded"
+                  >
                     Edit
                   </Link>
-                  <button onClick={deleteButtonClickHandler} className="flex  text-white bg-indigo-700 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-700 rounded">Delete</button>
+                  <button
+                    onClick={deleteButtonClickHandler}
+                    className="flex  text-white bg-indigo-700 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-700 rounded"
+                  >
+                    Delete
+                  </button>
                 </div>
               )}
 
@@ -128,15 +141,21 @@ function Details() {
                         name="comment"
                         placeholder="Type Your Comment"
                         required=""
-                        defaultValue={""}
+                        value={commentText}
+                        onChange={(e) => setCommentText(e.target.value)}
                       />
                     </div>
                     <div className="w-full md:w-full flex items-start md:w-full px-3">
                       <div className="-mr-1">
                         <input
                           type="submit"
-                          className="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100"
+                          className={`bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100 ${
+                            isCommentEmpty
+                              ? "opacity-50 cursor-not-allowed"
+                              : "" 
+                          }`}
                           defaultValue="Post Comment"
+                          disabled={isCommentEmpty} 
                         />
                       </div>
                     </div>
