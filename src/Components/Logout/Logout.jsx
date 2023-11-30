@@ -15,7 +15,10 @@ function Logout() {
             logoutHandler()
             navigate(Path.Home)
         })
-      .catch(() => navigate(Path.Home));
+      .catch(() => {
+        logoutHandler()
+        navigate(Path.Home)
+      });
   }, []);
 
   return null;
