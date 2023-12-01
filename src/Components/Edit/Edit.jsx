@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import * as movieService from "../../services/movieService";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 function Edit() {
   const navigate = useNavigate();
@@ -28,10 +29,10 @@ function Edit() {
 
     try {
       await movieService.edit(movieId, values);
-
+      toast.success('Post edited!')
       navigate("/posts");
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      toast.error(error.message)
     }
   };
 
@@ -65,7 +66,7 @@ function Edit() {
             value={movie.title}
             onChange={onChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
-            required=""
+            required
           />
         </div>
         <div className="mb-6">
@@ -82,7 +83,7 @@ function Edit() {
             value={movie.year}
             onChange={onChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
-            required=""
+            required
           />
         </div>
         <div className="mb-6">
@@ -99,7 +100,7 @@ function Edit() {
             value={movie.genre}
             onChange={onChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
-            required=""
+            required
           />
         </div>
         <div className="mb-6">
@@ -116,7 +117,8 @@ function Edit() {
             value={movie.imageUrl}
             onChange={onChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
-            required=""
+            required
+            pattern="https?://.+"
           />
         </div>
         <div className="mb-6">
@@ -133,7 +135,7 @@ function Edit() {
             value={movie.review}
             onChange={onChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
-            required=""
+            required
           />
         </div>
         <button
