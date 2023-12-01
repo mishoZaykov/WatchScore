@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import AuthContext from "../../context/authContext";
+import toast from "react-hot-toast";
 
 const RegisterFormKeys = {
   Username: "username",
@@ -37,9 +38,9 @@ function Register() {
     try {
       await registerSubmitHandler(values);
 
-      alert('Registration successful')
+      toast.success('Registration successful')
     } catch (error) {
-      alert(`Registration failed: ${error.message}`)
+      toast.error(`Registration failed: ${error.message}`)
     } finally {
       setSubmitting(false);
     }

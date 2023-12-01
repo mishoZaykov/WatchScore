@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/authContext";
 import AuthGuard from "./Components/Guards/AuthGuard";
 import Path from "./paths";
+import {Toaster} from 'react-hot-toast'
 
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
@@ -36,6 +37,7 @@ function App() {
           </Route>
         </Routes>
         <Footer />
+        <Toaster />
       </>
     </AuthProvider>
   );
