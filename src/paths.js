@@ -6,7 +6,8 @@ const Path = {
     Register: '/register',
     Create: '/create',
     Posts: '/posts',
-    Details: '/details/:movieId'
+    Details: '/details/:movieId',
+    NotFound: '*'
 };
 
 export default Path;

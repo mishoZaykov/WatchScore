@@ -17,6 +17,7 @@ import Logout from "./Components/Logout/Logout";
 import Edit from "./Components/Edit/Edit";
 
 import "./index.css";
+import NotFound from "./Components/NotFound/NotFound";
 
 function App() {
   return (
@@ -35,6 +36,8 @@ function App() {
             <Route path={Path.Edit} element={<Edit />} />
             <Route path={Path.Logout} element={<Logout />} />
           </Route>
+
+          <Route path={Path.NotFound} element={<NotFound />}/>
         </Routes>
         <Footer />
         <Toaster />
