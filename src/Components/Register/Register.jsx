@@ -38,7 +38,7 @@ function Register() {
     try {
       await registerSubmitHandler(values);
 
-      toast.success('Registration successful')
+      toast.success('Registration successful!')
     } catch (error) {
       toast.error(`Registration failed: ${error.message}`)
     } finally {
@@ -141,7 +141,7 @@ function Register() {
                     disabled={isSubmitting}
                     className="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none"
                   >
-                    {isSubmitting ? "Signing in..." : "Sign in"}
+                    {isSubmitting ? "Signing up..." : "Sign up"}
                   </button>
                 </div>
               </Form>

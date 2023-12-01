@@ -1,6 +1,8 @@
 import { useContext } from "react";
-import useForm from "../../hooks/useForm";
+import { Form, Formik, Field, ErrorMessage } from "formik";
 import AuthContext from "../../context/authContext";
+import * as Yup from "yup";
+import toast from "react-hot-toast";
 
 const LoginFormKeys = {
   Email: "email",
@@ -9,10 +11,30 @@ const LoginFormKeys = {
 
 function Login() {
   const { loginSubmitHandler } = useContext(AuthContext);
-  const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
+
+  const initialValues = {
     [LoginFormKeys.Email]: "",
     [LoginFormKeys.Password]: "",
+  };
+
+  const validationSchema = Yup.object().shape({
+    [LoginFormKeys.Email]: Yup.string()
+      .email("Invalid email")
+      .required("Email is required"),
+    [LoginFormKeys.Password]: Yup.string().required("Password is required"),
   });
+
+  const onSubmit = async (values, { setSubmitting }) => {
+    try {
+      await loginSubmitHandler(values);
+
+      toast.success("Login successful!");
+    } catch (error) {
+      toast.error(`Login failed: ${error.message}`);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <section className="min-h-screen flex items-stretch text-white ">
@@ -41,42 +63,54 @@ function Login() {
         </div>
         <div className="w-full py-6 z-20 ">
           <h1 className="my-6 text-5xl">Login Now</h1>
-
-          <form
-            className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto"
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
             onSubmit={onSubmit}
           >
-            <div className="pb-2 pt-4">
-              <input
-                type="email"
-                name={LoginFormKeys.Email}
-                id="email"
-                placeholder="Email"
-                className="block w-full p-4 text-lg rounded-sm bg-black"
-                onChange={onChange}
-                value={values[LoginFormKeys.Email]}
-              />
-            </div>
-            <div className="pb-2 pt-4">
-              <input
-                className="block w-full p-4 text-lg rounded-sm bg-black"
-                type="password"
-                name={LoginFormKeys.Password}
-                id="password"
-                placeholder="Password"
-                onChange={onChange}
-                value={values[LoginFormKeys.Password]}
-              />
-            </div>
-            <div className="text-right text-gray-400 hover:underline hover:text-gray-100">
-              <a href="/register">Don't have an account?</a>
-            </div>
-            <div className="px-4 pb-2 pt-4">
-              <button className="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none">
-                sign in
-              </button>
-            </div>
-          </form>
+            {({ isSubmitting }) => (
+              <Form className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+                <div className="pb-2 pt-4">
+                  <Field
+                    type="email"
+                    name={LoginFormKeys.Email}
+                    placeholder="Email"
+                    className="block w-full p-4 text-lg rounded-sm bg-black"
+                  />
+                  <ErrorMessage
+                    name={LoginFormKeys.Email}
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
+                <div className="pb-2 pt-4">
+                  <Field
+                    className="block w-full p-4 text-lg rounded-sm bg-black"
+                    type="password"
+                    name={LoginFormKeys.Password}
+                    placeholder="Password"
+                  />
+                  <ErrorMessage
+                    name={LoginFormKeys.Password}
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
+                <div className="text-right text-gray-400 hover:underline hover:text-gray-100">
+                  <a href="/register">Don't have an account?</a>
+                </div>
+                <div className="px-4 pb-2 pt-4">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none"
+                  >
+                    {isSubmitting ? "Signing in..." : "Sign in"}
+                  </button>
+                </div>
+              </Form>
+            )}
+          </Formik>
         </div>
       </div>
     </section>
