@@ -4,7 +4,7 @@ function Home() {
   return (
     <>
       <section className="relative  bg-[url(https://images.unsplash.com/photo-1505775561242-727b7fba20f0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-center bg-no-repeat">
-        <div className="absolute inset-0  sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"></div>
+        <div className="absolute inset-0 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"></div>
 
         <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex h-auto lg:items-center lg:px-8">
           <div className="max-w-xl text-left ltr:sm:text-left rtl:sm:text-right">
@@ -49,12 +49,12 @@ function Home() {
           <div className="grid grid-cols-2 gap-4 mt-8">
             <img
               className="w-full rounded-lg"
-              src="../../public/remote.jpg"
+              src="/remote.jpg"
               alt="movie content 1"
             />
             <img
               className="mt-4 w-full lg:mt-10 rounded-lg"
-              src="../../public/cinema.jpg"
+              src="/cinema.jpg"
               alt="office content 2"
             />
           </div>

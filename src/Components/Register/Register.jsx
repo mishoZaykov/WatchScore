@@ -51,7 +51,7 @@ function Register() {
       <div
         className="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
         style={{
-          backgroundImage: "url(../../public/moviePoster2.jpg)",
+          backgroundImage: "url(/moviePoster2.jpg)",
         }}
       >
         <div className="absolute bg-black opacity-60 inset-0 z-0" />
@@ -66,7 +66,7 @@ function Register() {
         <div
           className="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-center"
           style={{
-            backgroundImage: "url(../../public/moviePoster2.jpg)",
+            backgroundImage: "url(/moviePoster2.jpg)",
           }}
         >
           <div className="absolute bg-black opacity-60 inset-0 z-0" />

@@ -13,7 +13,7 @@ function Header() {
     <nav className="bg-white border-indigo-200 dark:bg-indigo-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/" className="flex items-center">
-          <img className="w-12 h-12 mr-3 " src="../../public/logo.svg" alt="" />
+          <img className="w-12 h-12 mr-3 " src="/logo.svg" alt="" />
         </Link>
         <button
           onClick={toggleMenu}
