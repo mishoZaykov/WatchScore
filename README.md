@@ -53,6 +53,8 @@ npm run dev
 ```
 Once the server has started, access the application by visiting http://localhost:5173 in your web browser.
 
+**Or you can click the link https://watchscore-ac915.web.app/ to get to the site, but you still need to start the server!**
+
 ## Navigate to the Server Directory
 ```bash
 cd server
