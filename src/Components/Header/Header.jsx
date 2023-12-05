@@ -6,10 +6,9 @@ function Header() {
   const { isAuthenticated, username } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+    setIsMenuOpen(!isMenuOpen);
+  };
   return (
     <nav className="bg-white border-indigo-200 dark:bg-indigo-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -41,7 +40,12 @@ function Header() {
           </svg>
         </button>
 
-        <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`} id="navbar-default">
+        <div
+          className={`${
+            isMenuOpen ? "block" : "hidden"
+          } w-full md:block md:w-auto`}
+          id="navbar-default"
+        >
           <ul className="font-medium flex flex-row p-4 md:p-0 mt-4 border border-indigo-100 rounded-lg bg-indigo-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-indigo-800 md:dark:bg-indigo-900 dark:border-indigo-700">
             <li>
               <Link
@@ -61,14 +65,7 @@ function Header() {
                     Create
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    to="/profile"
-                    className="block py-2 pl-3 pr-4 text-indigo-900 rounded hover:bg-indigo-100 md:hover:bg-transparent md:border-0 md:hover:text-indigo-700 md:p-0 dark:text-white md:dark:hover:text-indigo-500 dark:hover:bg-indigo-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                  >
-                    {username}'s Profile
-                  </Link>
-                </li>
+
                 <li>
                   <Link
                     to="/logout"
@@ -77,6 +74,9 @@ function Header() {
                     Logout
                   </Link>
                 </li>
+                <p className="block py-2 pl-3 pr-4 text-indigo-900 rounded md:hover:bg-transparent md:border-0  md:p-0 dark:text-indigo-400 ">
+                  Hello, {username}
+                </p>
               </div>
             )}
             {!isAuthenticated && (
