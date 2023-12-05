@@ -52,4 +52,6 @@ npm install
 node /server.js
 ```
 Ensure that the server is running without any errors. It should be accessible at the specified endpoints for handling backend operations at http://localhost:3030/
-  
+
+You can also check out the repository for the server: 
+- https://github.com/softuni-practice-server/softuni-practice-server
