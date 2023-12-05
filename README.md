@@ -18,6 +18,20 @@ More than just a review platform, the app celebrates diverse perspectives and op
 ## Hosting
 - **Firebase** was used for hosting the project.
 
+# How It Works
+## Account Creation and Authentication:
+- Users register to create personalized accounts, gaining access to the app's features.
+- Authentication ensures a secure space for users to interact within the app.
+## Creating Movie Posts:
+- Authenticated users contribute by creating detailed movie posts, including essential movie information such as title, year, genre, and an image URL.
+- They also share their personal reviews and thoughts on the movie.
+# Post Managment:
+- Users can revisit and edit their posts to update information or refine their reviews.
+- Users have the option to remove their posts if necessary.
+# Interacting with Posts:
+- Authenticated users engage with the community by leaving comments on other users' movie posts.
+- Comments serve as a platform for discussions, diverse perspectives, and interactions among users.
+  
 # Starting The Project
 ## Prerequisites:
 - Node.js intalled on your machine
