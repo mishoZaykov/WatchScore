@@ -24,6 +24,7 @@ function App() {
     <AuthProvider>
       <>
         <Header />
+
         <Routes>
           <Route path={Path.Home} element={<Home />} />
           <Route path={Path.Login} element={<Login />} />
@@ -39,7 +40,9 @@ function App() {
 
           <Route path={Path.NotFound} element={<NotFound />}/>
         </Routes>
+        
         <Footer />
+
         <Toaster />
       </>
     </AuthProvider>

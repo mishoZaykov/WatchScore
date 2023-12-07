@@ -9,6 +9,7 @@ function Header() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  
   return (
     <nav className="bg-white border-indigo-200 dark:bg-indigo-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
